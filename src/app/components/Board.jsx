@@ -48,10 +48,16 @@ export default function Board() {
   return (
     <section className="space-y-4">
       <div className="grid gap-4 md:grid-cols-3">
-        {/* Ticket List functions will render - fetch from api/tickets */}
-        <div className="col-span-full text-sm text-gray-400">
-          Filter by status and priority, search by keyword, and add tickets to
-          your queue.
+        <div className="col-span-full grid gap-3 md:grid-cols-3">
+          <StatusFilter
+            value={filters.status}
+            onChange={(v) => setFilters((f) => ({ ...f, status: v }))}
+          />
+          <PriorityFilter
+            value={filters.priority}
+            onChange={(v) => setFilters((f) => ({ ...f, priority: v }))}
+          />
+          <SearchBox value={search} onChange={setSearch} />
         </div>
       </div>
 
