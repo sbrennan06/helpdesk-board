@@ -1,6 +1,11 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 export default function Board() {
+  const [tickets, setTickets] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   return (
     <section className="space-y-4">
       <div className="grid gap-4 md:grid-cols-3">
