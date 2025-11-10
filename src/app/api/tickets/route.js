@@ -110,7 +110,7 @@ export async function GET() {
     },
     {
       id: "t-1013",
-      title: "Printer not responding on Floor 3",
+      title: "Printer (Floor3) not responding",
       description: "Queue stuck and jobs timing out.",
       priority: "Medium",
       status: "Open",
