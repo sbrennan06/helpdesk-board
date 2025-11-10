@@ -11,22 +11,23 @@ export default function Board() {
     let isMounted = true;
 
     async function load() {
-        try {
-            const res = await fetch('/api/tickets');
-            if (!res.ok) throw new Error(`HTTP ${res.status}`);
-            const data = await.res.json();
-            if (isMounted) setTickets(data);
-        } catch (err) {
-            if (isMounted) setError(err.message || 'Failed to load');
-        } finally {
-            if (isMounted) setLoading(false);
-        }
+      try {
+        const res = await fetch("/api/tickets");
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        if (isMounted) setTickets(data);
+      } catch (err) {
+        if (isMounted) setError(err.message || "Failed to load");
+      } finally {
+        if (isMounted) setLoading(false);
+      }
     }
-    
-    load();
-    return() => { isMounted = false; };
-  }, []);
 
+    load();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   return (
     <section className="space-y-4">
@@ -37,6 +38,14 @@ export default function Board() {
           your queue.
         </div>
       </div>
+
+      {loading && <p className="text-sm text-gray-400">Loading....</p>}
+      {error && <p className="text-sm text-red-400">Unable to load tickets.</p>}
+      {!loading && !error && (
+        <p className="text-sm text-gray-400">
+          Loaded {tickets.length} tickets.
+        </p>
+      )}
 
       {/* Queue & messages will appear here */}
     </section>
