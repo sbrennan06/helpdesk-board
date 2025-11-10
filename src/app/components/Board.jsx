@@ -5,6 +5,7 @@ import StatusFilter from "./StatusFilter";
 import PriorityFilter from "./PriorityFilter";
 import SearchBox from "./SearchBox";
 import TicketList from "./TicketList";
+import MyQueueSummary from "./MyQueueSummary";
 
 export default function Board() {
   const [tickets, setTickets] = useState([]);
@@ -12,6 +13,7 @@ export default function Board() {
   const [error, setError] = useState(null);
   const [filters, setFilters] = useState({ status: "All", priority: "All" });
   const [search, setSearch] = useState("");
+  const [queue, setQueue] = useState({});
 
   useEffect(() => {
     let isMounted = true;
@@ -45,6 +47,22 @@ export default function Board() {
     return statusOk && priorityOk && searchOk;
   });
 
+  function addToQueue(id) {
+    if (!id) return;
+    setQueue((prev) => ({ ...prev, [id]: true }));
+  }
+  function removeFromQueue(id) {
+    setQueue((prev) => {
+      const copy = { ...prev };
+      delete copy[id];
+      return copy;
+    });
+  }
+  function clearQueue() {
+    setQueue({});
+  }
+  const queuedTickets = tickets.filter((t) => queue[t.id]);
+
   return (
     <section className="space-y-4">
       <div className="grid gap-4 md:grid-cols-3">
@@ -74,6 +92,11 @@ export default function Board() {
       {!loading && !error && visibleTickets.length === 0 && (
         <p className="text-sm text-gray-400">No tickets match your filters.</p>
       )}
+      <MyQueueSummary
+        items={queuedTickets}
+        onRemove={removeFromQueue}
+        onClear={clearQueue}
+      />
     </section>
   );
 }
