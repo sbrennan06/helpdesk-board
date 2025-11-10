@@ -65,13 +65,15 @@ export default function Board() {
       {error && <p className="text-sm text-red-400">Unable to load tickets.</p>}
       {!loading && !error && (
         <p className="text-sm text-gray-400">
-          Loaded {tickets.length} tickets.
+          Showing {visibleTickets.length} tickets.
         </p>
       )}
-      {!loading && !error && tickets.length > 0 && (
-        <TicketList tickets={tickets} />
+      {!loading && !error && visibleTickets.length > 0 && (
+        <TicketList tickets={visibleTickets} />
       )}
-      {/* Queue & messages will appear here */}
+      {!loading && !error && visibleTickets.length === 0 && (
+        <p className="text-sm text-gray-400">No tickets match your filters.</p>
+      )}
     </section>
   );
 }
