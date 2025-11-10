@@ -35,6 +35,16 @@ export default function Board() {
     };
   }, []);
 
+  const visibleTickets = tickets.filter((t) => {
+    const statusOk = filters.status === "All" || t.status === filters.status;
+    const priorityOk =
+      filters.priority === "All" || t.priority === filters.priority;
+    const q = search.trim().toLowerCase();
+    const text = `${t.title} ${t.description}`.toLowerCase();
+    const searchOk = q === "" || text.includes(q);
+    return statusOk && priorityOk && searchOk;
+  });
+
   return (
     <section className="space-y-4">
       <div className="grid gap-4 md:grid-cols-3">
