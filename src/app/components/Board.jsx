@@ -6,6 +6,28 @@ export default function Board() {
   const [tickets, setTickets] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    async function load() {
+        try {
+            const res = await fetch('/api/tickets');
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            const data = await.res.json();
+            if (isMounted) setTickets(data);
+        } catch (err) {
+            if (isMounted) setError(err.message || 'Failed to load');
+        } finally {
+            if (isMounted) setLoading(false);
+        }
+    }
+    
+    load();
+    return() => { isMounted = false; };
+  }, []);
+
+
   return (
     <section className="space-y-4">
       <div className="grid gap-4 md:grid-cols-3">
