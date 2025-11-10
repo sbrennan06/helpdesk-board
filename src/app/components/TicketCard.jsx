@@ -27,7 +27,7 @@ export default function TicketCard({ ticket, onAddToQueue, disabled }) {
         className="mt-3 w-full rounded-md bg-blue-600 px-3 py-2 text-white disabled:opacity-50"
         onClick={() => onAddToQueue?.(ticket?.id)}
         disabled={disabled}
-        aria-label={`Add ${title} || 'ticket'} to My Queue`}
+        aria-label={`Add ${title || "ticket"} to My Queue`}
       >
         Add to My Queue
       </button>
