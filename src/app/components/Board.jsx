@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import TicketList from "./TicketList";
 
 export default function Board() {
   const [tickets, setTickets] = useState([]);
@@ -46,7 +47,9 @@ export default function Board() {
           Loaded {tickets.length} tickets.
         </p>
       )}
-
+      {!loading && !error && tickets.length > 0 && (
+        <TicketList tickets={tickets} />
+      )}
       {/* Queue & messages will appear here */}
     </section>
   );
