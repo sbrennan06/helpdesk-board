@@ -2,7 +2,7 @@
 
 import TicketCard from "./TicketCard";
 
-export default function TicketList({ tickets = [], onAddToQueue }) {
+export default function TicketList({ tickets = [], onAddToQueue, queue = {} }) {
   return (
     <div className="grid gap-4 md:grid-cols-3">
       {tickets.map((t) => (
@@ -10,7 +10,7 @@ export default function TicketList({ tickets = [], onAddToQueue }) {
           key={t.id}
           ticket={t}
           onAddToQueue={onAddToQueue}
-          disabled={!!queue[t.id]} //disable if already in queue
+          disabled={Boolean(queue?.[t.id])}
         />
       ))}
     </div>

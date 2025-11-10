@@ -87,7 +87,11 @@ export default function Board() {
         </p>
       )}
       {!loading && !error && visibleTickets.length > 0 && (
-        <TicketList tickets={visibleTickets} />
+        <TicketList
+          tickets={visibleTickets}
+          onAddToQueue={addToQueue}
+          queue={queue}
+        />
       )}
       {!loading && !error && visibleTickets.length === 0 && (
         <p className="text-sm text-gray-400">No tickets match your filters.</p>
