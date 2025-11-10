@@ -1,6 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import StatusFilter from "./StatusFilter";
+import PriorityFilter from "./PriorityFilter";
+import SearchBox from "./SearchBox";
 import TicketList from "./TicketList";
 
 export default function Board() {
