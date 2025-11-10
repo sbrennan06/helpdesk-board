@@ -7,7 +7,7 @@ export default function PriorityFilter({ value = "All", onChange }) {
       <select
         value={value}
         onChange={(e) => onChange?.(e.target.value)}
-        className="rounded-md bg-black/30 p-2 border-gray-700"
+        className="rounded-md bg-black/30 p-2 border border-gray-700"
       >
         <option>All</option>
         <option>Low</option>

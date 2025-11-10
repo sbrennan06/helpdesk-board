@@ -3,7 +3,7 @@
 export default function SearchBox({ value = "", onChange }) {
   return (
     <label className="flex flex-col text-sm">
-      <span className="mb-1">Searcg</span>
+      <span className="mb-1">Search</span>
       <input
         value={value}
         onChange={(e) => onChange?.(e.target.value)}

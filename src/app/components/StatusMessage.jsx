@@ -10,5 +10,5 @@ export default function StatusMessage({ state = "idle", message }) {
       : state === "empty"
       ? "No tickets match your filters."
       : "");
-  return text ? <p className="text-sm text-gray-400">{textA}</p> : null;
+  return text ? <p className="text-sm text-gray-400">{text}</p> : null;
 }
