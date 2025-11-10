@@ -1,10 +1,13 @@
 "use client";
 
+import TicketCard from "./TicketCard";
+
 export default function TicketList({ tickets = [], onAddToQueue }) {
   return (
-    <div className="grid gap-4md: grid-cols-3">
-      {/* Ticket cards will map here */}
-      <p className="text-sm text-gray-400">TicketList scaffold</p>
+    <div className="grid gap-4 md:grid-cols-3">
+      {tickets.map((t) => (
+        <TicketCard key={t.id} ticket={t} />
+      ))}
     </div>
   );
 }
